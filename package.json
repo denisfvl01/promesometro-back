@@ -1,0 +1,22 @@
+{
+  "name": "alan",
+  "version": "1.0.0",
+  "description": "Este es un ejemplo de un login con token y subida de imagenes.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Erick Bran",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.3",
+    "connect-multiparty": "^2.2.0",
+    "express": "^4.16.4",
+    "jwt-simple": "^0.5.5",
+    "moment": "^2.24.0",
+    "mongoose": "^5.4.6",
+    "nodemon": "^1.19.0"
+  }
+}
