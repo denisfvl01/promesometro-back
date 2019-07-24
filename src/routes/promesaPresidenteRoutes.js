@@ -5,7 +5,7 @@ var PromesaPresidenteController = require("../controllers/promesaPresidenteContr
 var md_auth = require('../middleware/aunthenticated');
 
 var api = express.Router();
-api.post('/registrar-promesa-presidente', PromesaPresidenteController.registrarPromesa);
+api.post('/registrar-promesa-presidente', md_auth.ensureAuth, PromesaPresidenteController.registrarPromesa);
 api.put('/editar-promesa-presidente/:id', md_auth.ensureAuth, PromesaPresidenteController.editarPromesa);
 api.delete('/eliminar-promesa-presidente/:id', md_auth.ensureAuth, PromesaPresidenteController.eliminarPromesa);
 api.get('/listar-promesas-presidente/:id', md_auth.ensureAuth, PromesaPresidenteController.listarPorPresidente);
