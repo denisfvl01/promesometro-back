@@ -65,8 +65,9 @@ function eliminarPromesa(req, res) {
 function votarSi(req, res) {
     var promesaPresidenteId = req.params.id;
     var votanteID = req.user.sub;
+    
 
-    PromesaPresidente.findByIdAndUpdate(promesaPresidenteId, { $inc: { votoSi: 1 }, $push: { votante: votanteID } }, { new: true }, (err, promesaPresidenteActualizado) => {
+    PromesaPresidente.findByIdAndUpdate(promesaPresidenteId, { $inc: { votoSi: 1 }, $push: { votantes: votanteID } }, { new: true }, (err, promesaPresidenteActualizado) => {
         if (err) return res.status(500).send({ message: 'Error de petición' });
 
         if (!promesaPresidenteActualizado) return res.status(404).send({ message: 'No se ha podido actualizar la promesa' });
@@ -79,7 +80,7 @@ function votarNo(req, res) {
     var promesaPresidenteId = req.params.id;
     var votanteID = req.user.sub;
 
-    PromesaPresidente.findByIdAndUpdate(promesaPresidenteId, { $inc: { votoNo: 1 }, $push: { votante: votanteID } }, { new: true }, (err, promesaPresidenteActualizado) => {
+    PromesaPresidente.findByIdAndUpdate(promesaPresidenteId, { $inc: { votoNo: 1 }, $push: { votantes: votanteID } }, { new: true }, (err, promesaPresidenteActualizado) => {
         if (err) return res.status(500).send({ message: 'Error de petición' });
 
         if (!promesaPresidenteActualizado) return res.status(404).send({ message: 'No se ha podido actualizar la promesa' });

@@ -11,7 +11,7 @@ function registrarPromesa(req, res) {
         promesaAlcalde.candidato = params.candidato;
         promesaAlcalde.votoSi = 0;
         promesaAlcalde.votoNo = 0;
-        promesaAlcalde.votante = [];
+        promesaAlcalde.votantes = [];
 
         PromesaAlcalde.find({
             descripcion: promesaAlcalde.descripcion,
@@ -67,7 +67,7 @@ function votarSi(req, res) {
     var promesaAlcaldeAId = req.params.id;
     var votanteID = req.user.sub;
 
-    PromesaAlcalde.findByIdAndUpdate(promesaAlcaldeAId, { $inc: { votoSi: 1 }, $push: { votante: votanteID } }, { new: true }, (err, promesaAlcaldeActualizado) => {
+    PromesaAlcalde.findByIdAndUpdate(promesaAlcaldeAId, { $inc: { votoSi: 1 }, $push: { votantes: votanteID } }, { new: true }, (err, promesaAlcaldeActualizado) => {
         if (err) return res.status(500).send({ message: 'Error de petición' });
 
         if (!promesaAlcaldeActualizado) return res.status(404).send({ message: 'No se ha podido actualizar la promesa' });
@@ -80,7 +80,7 @@ function votarNo(req, res) {
     var promesaAlcaldeId = req.params.id;
     var votanteID = req.user.sub;
 
-    PromesaAlcalde.findByIdAndUpdate(promesaAlcaldeId, { $inc: { votoNo: 1 }, $push: { votante: votanteID } }, { new: true }, (err, promesaAlcaldeActualizado) => {
+    PromesaAlcalde.findByIdAndUpdate(promesaAlcaldeId, { $inc: { votoNo: 1 }, $push: { votantes: votanteID } }, { new: true }, (err, promesaAlcaldeActualizado) => {
         if (err) return res.status(500).send({ message: 'Error de petición' });
 
         if (!promesaAlcaldeActualizado) return res.status(404).send({ message: 'No se ha podido actualizar la promesa' });
